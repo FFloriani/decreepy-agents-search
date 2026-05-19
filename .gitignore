@@ -1,0 +1,17 @@
+# Ignorar dependências do node
+node_modules/
+
+# Ignorar o clone do repositório fonte de documentações (mantendo o projeto limpo)
+repo-fonte/
+
+# Ignorar pastas de deploy do Vercel
+.vercel/
+site/.vercel/
+
+# Logs de erro e arquivos do sistema
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.DS_Store
+Thumbs.db
