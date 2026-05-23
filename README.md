@@ -29,17 +29,7 @@ The user interface delivers a premium, immersive digital experience leveraging s
 - **Horizontal Swipeable Filters:**sleek touch-friendly pill buttons with web-safe dynamic horizontal scrolling to prevent wrapping and preserve layout cleanliness on mobile devices.
 - **Staggered Entry Transitions:** Progressive CSS `@keyframes fadeInUp` loading animations, assigning staggered delays to card items for a beautiful, organic layout reveal.
 
----
 
-## 🌌 "Stellar Summon" Gacha System (AAA Gamification)
-
-LOWAS incorporates an engaging, high-fidelity **Stellar Summon (Invocação Estelar)** gacha simulator to encourage exploration and user retention:
-- **Summon Orb:** A central, interactive glowing plasma core that triggers agent discovery with custom CSS keyframes.
-- **Persistent Pity Tracker:** Integrated directly into `localStorage`. A standard 10-summon pity bar guarantees a manually curated, rich-detailed agent profile on the 10th summon.
-- **Web Audio API Synth:** Renders real-time, synthetically generated cosmic soundscapes and sweeps directly in the browser. Emits majestic, bright harmonic chords during **Epic Summons** (rare curated agents).
-- **Reveal Modal:** Features a premium holographic overlay with luminescent frames tailored to the agent's specific framework and rarity (gold frames for epic summons).
-
----
 
 ## 🛡️ Robust LGPD Privacy Compliance (Art. 18 Compliant)
 
