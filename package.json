@@ -1,0 +1,11 @@
+{
+  "name": "lowas",
+  "version": "1.0.0",
+  "description": "LOWAS — AI Agents Universe",
+  "scripts": {
+    "build": "node gerar_html.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
