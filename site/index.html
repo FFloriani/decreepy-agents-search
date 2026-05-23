@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decreepy Agents Search (DAS) — Database Premium</title>
+    <title>LOWAS — AI Agents Universe — Database Premium</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,15 +12,18 @@
     
     <style>
         :root {
-            --bg-color: #040906;
-            --grid-color: rgba(57, 255, 20, 0.04);
-            --card-bg: rgba(5, 14, 9, 0.85);
-            --card-border: rgba(57, 255, 20, 0.12);
-            --text-primary: #e0f6e5;
-            --text-secondary: #8bbfa0;
-            --accent-green: #39ff14;
-            --accent-green-glow: rgba(57, 255, 20, 0.35);
-            --accent-cyan: #00ffcc;
+            /* Palette Cósmica - Espelho do Universo */
+            --bg-color: #050507;
+            --grid-color: rgba(139, 0, 255, 0.05);
+            --card-bg: rgba(10, 8, 20, 0.75);
+            --card-border: rgba(192, 38, 255, 0.15);
+            --text-primary: #f1e4ff;
+            --text-secondary: #a395b8;
+            --accent-purple: #8B00FF;
+            --accent-violet: #C026FF;
+            --accent-magenta: #FF007F;
+            --accent-gold: #FFD700;
+            --accent-cyan: #00F0FF;
             
             --tag-crewai: #10b981;
             --tag-autogen: #f59e0b;
@@ -45,18 +48,52 @@
             overflow-x: hidden;
             position: relative;
             
-            /* Visual Grid Dinâmico */
+            /* Grid Cósmico Padrão */
             background-image: 
                 linear-gradient(var(--grid-color) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 50px 50px;
         }
 
+        /* Efeitos de Luz de Fundo (Nebulosas) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 20%; left: 30%;
+            width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(139, 0, 255, 0.08) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(80px);
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: 10%; right: 20%;
+            width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.05) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(100px);
+        }
+
+        /* Canvas de Constelações Dinâmicas */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         /* --- CRT EFEITO SCANLINES --- */
         .scanline-overlay {
             position: fixed;
             top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(139, 0, 255, 0.08) 50%);
             z-index: 99999;
             background-size: 100% 4px;
             pointer-events: none;
@@ -77,15 +114,15 @@
             overflow: hidden;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.8;
+            opacity: 0.6;
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
         }
 
         .retro-grid-3d {
             background-image: 
-                linear-gradient(rgba(57, 255, 20, 0.08) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(57, 255, 20, 0.08) 2px, transparent 2px);
+                linear-gradient(rgba(192, 38, 255, 0.06) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(192, 38, 255, 0.06) 2px, transparent 2px);
             background-size: 40px 40px;
             width: 200%;
             height: 800px;
@@ -93,7 +130,7 @@
             top: -200px;
             left: -50%;
             transform: perspective(180px) rotateX(60deg);
-            animation: gridScroll 18s linear infinite;
+            animation: gridScroll 20s linear infinite;
         }
 
         @keyframes gridScroll {
@@ -101,7 +138,7 @@
             100% { background-position: 0 800px; }
         }
 
-        /* --- TOP CYBER NAV BAR --- */
+        /* --- TOP NAV BAR --- */
         .cyber-navbar {
             max-width: 1400px;
             margin: 0 auto;
@@ -111,9 +148,10 @@
             align-items: center;
             position: relative;
             z-index: 10;
-            border-bottom: 1px solid rgba(57, 255, 20, 0.1);
-            background: rgba(4, 9, 6, 0.8);
-            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(192, 38, 255, 0.15);
+            background: rgba(5, 5, 7, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .nav-logo {
@@ -121,7 +159,7 @@
             font-weight: 900;
             font-size: 1.5rem;
             color: #ffffff;
-            text-shadow: 0 0 10px var(--accent-green);
+            text-shadow: 0 0 10px var(--accent-purple);
             letter-spacing: 2px;
             display: flex;
             align-items: center;
@@ -129,8 +167,8 @@
         }
 
         .nav-logo span {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 8px var(--accent-cyan);
+            color: var(--accent-magenta);
+            text-shadow: 0 0 8px var(--accent-magenta);
         }
 
         .nav-actions {
@@ -141,62 +179,494 @@
 
         .sys-button {
             background: transparent;
-            border: 1px solid var(--accent-green);
-            color: var(--accent-green);
+            border: 1px solid var(--accent-purple);
+            color: var(--text-primary);
             font-family: 'Share Tech Mono', monospace;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.2s ease;
-            box-shadow: 0 0 8px rgba(57, 255, 20, 0.2);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 8px rgba(139, 0, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px; /* Touch target */
         }
 
         .sys-button:hover {
-            background: var(--accent-green);
-            color: #040906;
-            box-shadow: 0 0 15px var(--accent-green-glow);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-violet));
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 0 18px rgba(192, 38, 255, 0.4);
+            transform: translateY(-2px);
         }
 
         .sys-button.cyan-btn {
             border-color: var(--accent-cyan);
             color: var(--accent-cyan);
-            box-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.15);
         }
 
         .sys-button.cyan-btn:hover {
-            background: var(--accent-cyan);
-            color: #040906;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: #050507;
+            border-color: transparent;
+            box-shadow: 0 0 18px rgba(0, 240, 255, 0.4);
         }
 
-        /* --- HEADER --- */
-        header {
+        /* --- HERO SECTION --- */
+        .hero-section {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 60px 24px 30px;
+            padding: 70px 24px 40px;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
-        h2 {
+        .hero-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
+            font-size: 4rem;
             font-weight: 900;
             color: #ffffff;
-            text-shadow: 0 0 12px var(--accent-green-glow);
-            letter-spacing: 1px;
-            margin-bottom: 12px;
+            text-shadow: 0 0 25px rgba(192, 38, 255, 0.7), 0 0 50px rgba(139, 0, 255, 0.4);
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
         }
 
-        .subtitle {
-            font-family: 'Share Tech Mono', monospace;
+        .hero-subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-magenta);
+            text-shadow: 0 0 12px rgba(255, 0, 127, 0.6);
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-description {
+            font-family: 'Inter', sans-serif;
             color: var(--text-secondary);
-            font-size: 1.05rem;
-            max-width: 800px;
+            font-size: 1.1rem;
+            max-width: 750px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* --- METRICS GRID --- */
+        .metrics-grid {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .metric-card {
+            background: rgba(10, 8, 25, 0.7);
+            border: 1.5px solid rgba(192, 38, 255, 0.2);
+            border-radius: 20px;
+            padding: 22px 30px;
+            min-width: 220px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-violet);
+            box-shadow: 0 15px 35px rgba(192, 38, 255, 0.15), 0 0 20px rgba(192, 38, 255, 0.1);
+        }
+
+        .metric-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        /* --- STELLAR SUMMON (GACHA) --- */
+        .summon-section {
+            max-width: 1400px;
+            margin: 0 auto 50px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .summon-container {
+            background: linear-gradient(135deg, rgba(15, 8, 30, 0.8) 0%, rgba(5, 4, 15, 0.95) 100%);
+            border: 2px solid rgba(192, 38, 255, 0.25);
+            border-radius: 28px;
+            padding: 35px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 
+                        0 0 30px rgba(139, 0, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summon-container::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(192, 38, 255, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .summon-header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .summon-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 0 12px var(--accent-purple);
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .summon-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .summon-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .summon-orb-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .summon-orb {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.8) 0%, rgba(139, 0, 255, 0.6) 50%, rgba(5, 5, 10, 0.9) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 35px rgba(192, 38, 255, 0.6), 
+                        inset 0 0 25px rgba(0, 240, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .summon-orb:hover {
+            transform: scale(1.08) rotate(15deg);
+            box-shadow: 0 0 50px rgba(192, 38, 255, 0.9), 
+                        0 0 20px rgba(0, 240, 255, 0.8),
+                        inset 0 0 35px rgba(255, 0, 127, 0.8);
+        }
+
+        .summon-orb.animating {
+            animation: orbSurge 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite alternate;
+        }
+
+        @keyframes orbSurge {
+            0% {
+                transform: scale(1) rotate(0deg);
+                box-shadow: 0 0 30px rgba(192, 38, 255, 0.6), inset 0 0 15px rgba(0, 240, 255, 0.4);
+            }
+            100% {
+                transform: scale(1.15) rotate(360deg);
+                box-shadow: 0 0 65px rgba(255, 0, 127, 1), 0 0 30px rgba(0, 240, 255, 0.9), inset 0 0 35px rgba(139, 0, 255, 0.8);
+            }
+        }
+
+        .orb-inner {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            border: 1px dashed rgba(0, 240, 255, 0.4);
+            animation: orbRotate 10s linear infinite;
+        }
+
+        @keyframes orbRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .orb-core {
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 20px var(--accent-cyan);
+            animation: orbPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.15); opacity: 1; text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px var(--accent-magenta); }
+        }
+
+        .summon-controls {
+            flex-grow: 1;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .summon-btn {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-magenta) 100%);
+            border: none;
+            border-radius: 18px;
+            padding: 16px 35px;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 25px rgba(192, 38, 255, 0.4), 0 0 15px rgba(255, 0, 127, 0.2);
+            text-align: center;
+        }
+
+        .summon-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(192, 38, 255, 0.6), 0 0 25px rgba(255, 0, 127, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .summon-btn:active {
+            transform: translateY(1px);
+        }
+
+        .pity-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pity-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
             letter-spacing: 0.5px;
+        }
+
+        .pity-label span:last-child {
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        .pity-bar-bg {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(192, 38, 255, 0.2);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .pity-bar-fill {
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        /* --- GACHA REVEAL MODAL --- */
+        .gacha-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 1, 6, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 100005;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+        }
+
+        .gacha-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .gacha-reveal-container {
+            width: 100%;
+            max-width: 600px;
+            perspective: 1000px;
+        }
+
+        .gacha-card-wrapper {
+            background: var(--card-bg);
+            border: 3px solid var(--accent-violet);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 
+                        0 0 50px rgba(192, 38, 255, 0.4),
+                        inset 0 0 25px rgba(192, 38, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+            transform: scale(0.8) rotateY(-15deg);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .gacha-modal-overlay.active .gacha-card-wrapper {
+            transform: scale(1) rotateY(0deg);
+        }
+
+        .gacha-card-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-magenta));
+        }
+
+        .gacha-reveal-header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .gacha-summon-status {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: rgba(255, 215, 0, 0.08);
+            border: 1.5px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 6px 16px;
+            animation: textGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); box-shadow: 0 0 8px rgba(255, 215, 0, 0.1); }
+            100% { text-shadow: 0 0 18px rgba(255, 215, 0, 0.9); box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+        }
+
+        .gacha-agent-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .gacha-badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .gacha-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .gacha-info-item {
+            background: rgba(5, 5, 8, 0.8);
+            border: 1px solid rgba(192, 38, 255, 0.15);
+            border-radius: 16px;
+            padding: 18px;
+        }
+
+        .gacha-info-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .gacha-info-val {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .gacha-close-btn {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-violet) 100%);
+            border: none;
+            border-radius: 16px;
+            padding: 15px;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 15px rgba(192, 38, 255, 0.3);
+            text-align: center;
+        }
+
+        .gacha-close-btn:hover {
+            filter: brightness(1.15);
+            box-shadow: 0 10px 20px rgba(192, 38, 255, 0.5);
         }
 
         /* --- CONTROLS BAR --- */
@@ -218,21 +688,22 @@
 
         .search-bar {
             width: 100%;
-            background: rgba(0, 12, 5, 0.9);
+            background: rgba(10, 8, 20, 0.9);
             border: 2px solid var(--card-border);
             border-radius: 20px;
-            padding: 22px 24px 22px 64px;
+            padding: 20px 24px 20px 64px;
             color: #ffffff;
             font-size: 1.1rem;
             font-family: 'Share Tech Mono', monospace;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            height: 60px;
         }
 
         .search-bar:focus {
             outline: none;
-            border-color: var(--accent-green);
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.25), inset 0 0 12px rgba(57, 255, 20, 0.1);
+            border-color: var(--accent-violet);
+            box-shadow: 0 0 30px rgba(192, 38, 255, 0.35), inset 0 0 12px rgba(192, 38, 255, 0.15);
         }
 
         .search-icon {
@@ -240,10 +711,10 @@
             left: 24px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--accent-green);
+            color: var(--accent-violet);
             font-size: 1.5rem;
             pointer-events: none;
-            text-shadow: 0 0 8px var(--accent-green);
+            text-shadow: 0 0 8px var(--accent-violet);
         }
 
         .filters-group {
@@ -255,7 +726,7 @@
         }
 
         .filter-btn {
-            background: rgba(0, 14, 6, 0.7);
+            background: rgba(10, 8, 20, 0.7);
             border: 1.5px solid var(--card-border);
             border-radius: 12px;
             padding: 12px 24px;
@@ -265,32 +736,34 @@
             font-weight: 700;
             cursor: pointer;
             letter-spacing: 0.5px;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 48px; /* Touch target */
         }
 
         .filter-btn:hover {
-            color: var(--accent-green);
-            border-color: var(--accent-green);
-            box-shadow: 0 0 12px rgba(57, 255, 20, 0.15);
-            background: rgba(0, 24, 10, 0.85);
+            color: var(--accent-magenta);
+            border-color: var(--accent-magenta);
+            box-shadow: 0 0 12px rgba(255, 0, 127, 0.25);
+            background: rgba(20, 10, 30, 0.85);
+            transform: translateY(-1px);
         }
 
         .filter-btn.active {
-            background: var(--accent-green);
-            border-color: var(--accent-green);
-            color: #040906;
-            box-shadow: 0 0 25px var(--accent-green-glow);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-magenta));
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(192, 38, 255, 0.45);
         }
 
         .stats-badge {
             font-family: 'Share Tech Mono', monospace;
-            background: rgba(0, 255, 204, 0.08);
-            border: 1px solid rgba(0, 255, 204, 0.25);
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.25);
             border-radius: 20px;
             padding: 8px 18px;
             font-size: 0.9rem;
             color: var(--accent-cyan);
-            text-shadow: 0 0 6px rgba(0, 255, 204, 0.3);
+            text-shadow: 0 0 6px rgba(0, 240, 255, 0.3);
             font-weight: bold;
         }
 
@@ -300,107 +773,122 @@
             margin: 0 auto;
             padding: 0 24px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 35px;
             position: relative;
             z-index: 1;
         }
 
         /* --- STUNNING GLASS GRID CARD --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .card {
-            background: var(--card-bg);
-            border: 2px solid var(--card-border);
-            border-radius: 24px;
-            padding: 30px;
+            background: rgba(12, 10, 28, 0.82);
+            border: 2px solid rgba(192, 38, 255, 0.2);
+            border-radius: 28px;
+            padding: 35px;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
             position: relative;
             overflow: hidden;
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-green);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 
-                        0 0 35px rgba(57, 255, 20, 0.2);
+            transform: translateY(-8px) scale(1.015);
+            border-color: var(--accent-violet);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 
+                        0 0 40px rgba(192, 38, 255, 0.35);
         }
 
+        /* Efeito de borda luminosa gradiente no topo do card */
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 5px;
+            top: 0; left: 0; width: 100%; height: 6px;
             background: transparent;
             transition: all 0.3s ease;
         }
 
-        .card.crewai::before { background: var(--tag-crewai); }
-        .card.autogen::before { background: var(--tag-autogen); }
-        .card.agno::before { background: var(--tag-agno); }
-        .card.langgraph::before { background: var(--tag-langgraph); }
-        .card.geral::before { background: var(--tag-geral); }
+        .card.crewai::before { background: linear-gradient(90deg, #10b981, #059669); }
+        .card.autogen::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .card.agno::before { background: linear-gradient(90deg, #3b82f6, #2563eb); }
+        .card.langgraph::before { background: linear-gradient(90deg, #06b6d4, #0891b2); }
+        .card.geral::before { background: linear-gradient(90deg, var(--accent-purple), var(--accent-magenta)); }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             gap: 15px;
         }
 
         .card-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.45rem;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.2px;
-            text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
         }
 
         .badges-wrapper {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 6px;
+            gap: 8px;
             flex-shrink: 0;
         }
 
         .badge-fw {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 900;
             text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 6px;
-            letter-spacing: 0.8px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            letter-spacing: 1px;
             color: #ffffff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: inline-block;
         }
 
-        .badge-fw.crewai { background: var(--tag-crewai); }
-        .badge-fw.autogen { background: var(--tag-autogen); }
-        .badge-fw.agno { background: var(--tag-agno); }
-        .badge-fw.langgraph { background: var(--tag-langgraph); }
-        .badge-fw.geral { background: var(--tag-geral); }
+        .badge-fw.crewai { background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+        .badge-fw.autogen { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+        .badge-fw.agno { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+        .badge-fw.langgraph { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); box-shadow: 0 0 10px rgba(6, 182, 212, 0.4); }
+        .badge-fw.geral { background: linear-gradient(135deg, #8B00FF 0%, #FF007F 100%); box-shadow: 0 0 12px rgba(192, 38, 255, 0.5); }
 
         .badge-sector {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.78rem;
-            background: rgba(57, 255, 20, 0.05);
-            border: 1px solid rgba(57, 255, 20, 0.2);
-            color: var(--accent-green);
-            padding: 3px 8px;
-            border-radius: 5px;
+            font-size: 0.8rem;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: var(--accent-cyan);
+            padding: 4px 10px;
+            border-radius: 6px;
             font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
         }
 
         /* --- CARD INTERACTIVE TABS SYSTEM --- */
         .card-tabs {
             display: flex;
-            border-bottom: 1.5px solid rgba(57, 255, 20, 0.15);
+            border-bottom: 1.5px solid rgba(192, 38, 255, 0.15);
             margin-bottom: 20px;
             gap: 4px;
         }
@@ -416,6 +904,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             font-weight: bold;
+            min-height: 36px;
         }
 
         .tab-btn:hover {
@@ -423,9 +912,9 @@
         }
 
         .tab-btn.active {
-            color: var(--accent-green);
-            border-bottom-color: var(--accent-green);
-            text-shadow: 0 0 6px var(--accent-green-glow);
+            color: var(--accent-violet);
+            border-bottom-color: var(--accent-violet);
+            text-shadow: 0 0 6px rgba(192, 38, 255, 0.4);
         }
 
         .tab-content {
@@ -448,14 +937,14 @@
 
         .desc-text {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 300;
-            line-height: 1.55;
+            line-height: 1.65;
         }
 
         .highlight-box {
-            background: rgba(0, 14, 6, 0.6);
-            border: 1px solid rgba(57, 255, 20, 0.08);
+            background: rgba(5, 5, 7, 0.6);
+            border: 1px solid rgba(192, 38, 255, 0.1);
             border-radius: 12px;
             padding: 14px;
             margin-top: 5px;
@@ -480,12 +969,12 @@
         /* --- CLONE/SETUP HELPER BOX --- */
         .terminal-box {
             background: #000000;
-            border: 1px solid rgba(57, 255, 20, 0.2);
+            border: 1px solid rgba(192, 38, 255, 0.25);
             border-radius: 8px;
             padding: 10px 14px;
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.78rem;
-            color: var(--accent-green);
+            color: var(--accent-cyan);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -506,16 +995,23 @@
             cursor: pointer;
             transition: all 0.2s ease;
             flex-shrink: 0;
+            font-size: 1rem;
+            min-width: 44px; /* Touch target */
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .terminal-copy:hover {
             color: #ffffff;
+            transform: scale(1.1);
         }
 
         /* --- ACTION SOURCE BUTTON --- */
         .btn-source {
             width: 100%;
-            background: rgba(0, 16, 6, 0.7);
+            background: rgba(10, 8, 20, 0.7);
             border: 1.5px solid var(--card-border);
             color: var(--text-primary);
             border-radius: 16px;
@@ -533,13 +1029,15 @@
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             margin-top: auto;
+            min-height: 52px; /* Touch target */
         }
 
         .btn-source:hover {
-            background: var(--accent-green);
-            color: #040906;
-            border-color: var(--accent-green);
-            box-shadow: 0 0 20px var(--accent-green-glow);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-magenta));
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(192, 38, 255, 0.4);
+            transform: translateY(-2px);
         }
 
         .btn-source svg {
@@ -565,10 +1063,10 @@
             position: fixed;
             bottom: 30px;
             left: 50%;
-            transform: translateX(-50%) translateY(150px);
-            background: rgba(4, 12, 6, 0.95);
-            border: 2px solid var(--accent-green);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95), 0 0 25px rgba(57, 255, 20, 0.15);
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(10, 8, 25, 0.98);
+            border: 2px solid var(--accent-violet);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(192, 38, 255, 0.15);
             border-radius: 20px;
             padding: 24px;
             width: 90%;
@@ -579,11 +1077,15 @@
             gap: 16px;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .cookie-banner.active {
             transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .cookie-header {
@@ -595,7 +1097,7 @@
             align-items: center;
             gap: 10px;
             letter-spacing: 0.5px;
-            text-shadow: 0 0 8px var(--accent-green-glow);
+            text-shadow: 0 0 8px rgba(192, 38, 255, 0.3);
         }
 
         .cookie-text {
@@ -613,8 +1115,8 @@
 
         .cookie-btn {
             background: transparent;
-            border: 1px solid var(--accent-green);
-            color: var(--accent-green);
+            border: 1px solid var(--accent-violet);
+            color: var(--text-primary);
             padding: 10px 18px;
             border-radius: 8px;
             font-family: 'Share Tech Mono', monospace;
@@ -622,22 +1124,25 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.2s ease;
+            min-height: 44px; /* Touch target */
         }
 
         .cookie-btn:hover {
-            background: var(--accent-green);
-            color: #040906;
-            box-shadow: 0 0 10px var(--accent-green-glow);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-violet));
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 0 10px rgba(192, 38, 255, 0.4);
         }
 
         .cookie-btn.accept-all {
-            background: var(--accent-green);
-            color: #040906;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-magenta));
+            border-color: transparent;
+            color: #ffffff;
         }
 
         .cookie-btn.accept-all:hover {
-            box-shadow: 0 0 15px var(--accent-green-glow);
-            filter: brightness(1.1);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+            filter: brightness(1.15);
         }
 
         .cookie-btn.sec-btn {
@@ -647,8 +1152,8 @@
 
         .cookie-btn.sec-btn:hover {
             background: var(--accent-cyan);
-            color: #040906;
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+            color: #050507;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
         }
 
         /* Full Interactive Privacy Center Modal */
@@ -657,6 +1162,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 100001;
             display: flex;
             justify-content: center;
@@ -673,9 +1179,9 @@
         }
 
         .modal-box {
-            background: rgba(4, 9, 6, 0.98);
+            background: rgba(8, 5, 15, 0.98);
             border: 2px solid var(--accent-cyan);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 255, 204, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 240, 255, 0.15);
             width: 100%;
             max-width: 850px;
             max-height: 85vh;
@@ -694,7 +1200,7 @@
 
         .modal-header {
             padding: 24px;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.15);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -704,7 +1210,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.3rem;
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
             font-weight: 900;
             letter-spacing: 1px;
         }
@@ -713,9 +1219,14 @@
             background: transparent;
             border: none;
             color: var(--text-secondary);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: color 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-close:hover {
@@ -724,9 +1235,10 @@
 
         .modal-tabs {
             display: flex;
-            background: rgba(0, 20, 10, 0.5);
-            border-bottom: 1px solid rgba(0, 255, 204, 0.15);
+            background: rgba(15, 5, 25, 0.5);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.15);
             padding: 0 12px;
+            overflow-x: auto;
         }
 
         .modal-tab-btn {
@@ -741,6 +1253,8 @@
             cursor: pointer;
             transition: all 0.2s ease;
             letter-spacing: 0.5px;
+            white-space: nowrap;
+            min-height: 48px;
         }
 
         .modal-tab-btn:hover {
@@ -750,7 +1264,7 @@
         .modal-tab-btn.active {
             color: var(--accent-cyan);
             border-bottom-color: var(--accent-cyan);
-            text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
         }
 
         .modal-body {
@@ -796,8 +1310,8 @@
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.85rem;
             margin-top: 10px;
-            background: rgba(0, 10, 5, 0.8);
-            border: 1px solid rgba(0, 255, 204, 0.15);
+            background: rgba(5, 5, 10, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.15);
             border-radius: 8px;
             overflow: hidden;
         }
@@ -805,11 +1319,11 @@
         .telemetry-table th, .telemetry-table td {
             padding: 12px 16px;
             text-align: left;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
         }
 
         .telemetry-table th {
-            background: rgba(0, 255, 204, 0.05);
+            background: rgba(0, 240, 255, 0.05);
             color: var(--accent-cyan);
             font-weight: bold;
         }
@@ -842,6 +1356,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            min-height: 48px; /* Touch target */
         }
 
         .purge-btn:hover {
@@ -858,8 +1373,8 @@
         }
 
         .right-item {
-            background: rgba(0, 14, 6, 0.6);
-            border: 1px solid rgba(0, 255, 204, 0.1);
+            background: rgba(10, 8, 20, 0.6);
+            border: 1px solid rgba(0, 240, 255, 0.1);
             border-radius: 12px;
             padding: 14px;
         }
@@ -875,24 +1390,291 @@
         }
 
         .right-header span {
-            background: rgba(0, 255, 204, 0.1);
+            background: rgba(0, 240, 255, 0.1);
             padding: 1px 6px;
             border-radius: 4px;
             font-size: 0.72rem;
         }
 
-        @media (max-width: 950px) {
-            .grid-container {
-                grid-template-columns: 1fr;
+        /* --- RESPONSIVIDADE DE ALTO NÍVEL --- */
+        /* Mobile Portrait Base (9:16) */
+        @media (max-width: 479px) {
+            .hero-section {
+                padding: 40px 16px 20px;
             }
-            h2 {
+            .hero-title {
+                font-size: 2.4rem;
+                text-shadow: 0 0 15px rgba(192, 38, 255, 0.6);
+                letter-spacing: 2px;
+            }
+            .hero-subtitle {
+                font-size: 0.85rem;
+                letter-spacing: 4px;
+                margin-bottom: 12px;
+            }
+            .hero-description {
+                font-size: 0.9rem;
+                margin-bottom: 25px;
+                line-height: 1.55;
+            }
+            .metrics-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                width: 100%;
+            }
+            .metric-card {
+                padding: 12px 6px;
+                min-width: auto;
+                border-radius: 12px;
+            }
+            .metric-icon {
+                font-size: 1.2rem;
+                margin-bottom: 4px;
+            }
+            .metric-value {
+                font-size: 1.25rem;
+            }
+            .metric-label {
+                font-size: 0.62rem;
+                letter-spacing: 0.5px;
+            }
+            .summon-section {
+                padding: 0 12px;
+                margin-bottom: 30px;
+            }
+            .summon-container {
+                padding: 20px 16px;
+                border-radius: 20px;
+            }
+            .summon-header h3 {
+                font-size: 1.15rem;
+            }
+            .summon-header p {
+                font-size: 0.8rem;
+            }
+            .summon-panel {
+                gap: 20px;
+                flex-direction: column;
+            }
+            .summon-orb-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+            .summon-orb {
+                width: 85px;
+                height: 85px;
+            }
+            .orb-core {
                 font-size: 1.8rem;
             }
-            .cyber-navbar {
-                padding: 15px;
+            .summon-controls {
+                width: 100%;
             }
-            .nav-logo {
-                font-size: 1.25rem;
+            .summon-btn {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                border-radius: 14px;
+            }
+            .pity-label {
+                font-size: 0.78rem;
+            }
+            .pity-bar-bg {
+                height: 8px;
+            }
+            .gacha-card-wrapper {
+                padding: 20px;
+                border-radius: 20px;
+                width: 95%;
+                gap: 15px;
+            }
+            .gacha-agent-name {
+                font-size: 1.4rem;
+            }
+            .gacha-info-item {
+                padding: 12px;
+                border-radius: 12px;
+            }
+            .gacha-info-val {
+                font-size: 0.85rem;
+            }
+            .gacha-close-btn {
+                padding: 12px;
+                font-size: 0.85rem;
+                border-radius: 12px;
+            }
+            .controls-container {
+                padding: 0 12px;
+                gap: 15px;
+                margin-bottom: 25px;
+            }
+            .search-bar {
+                font-size: 0.95rem;
+                padding-left: 50px;
+                height: 52px;
+            }
+            .search-icon {
+                left: 18px;
+                font-size: 1.2rem;
+            }
+            .filters-group {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                width: 100%;
+                padding: 4px 0 12px;
+                gap: 8px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .filters-group::-webkit-scrollbar {
+                display: none;
+            }
+            .filter-btn {
+                padding: 10px 16px;
+                font-size: 0.72rem;
+                border-radius: 10px;
+                min-height: auto;
+                height: 38px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            .stats-badge {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+                white-space: nowrap;
+            }
+            .grid-container {
+                grid-template-columns: 1fr;
+                padding: 0 12px;
+                gap: 20px;
+            }
+            .card {
+                padding: 20px;
+                border-radius: 20px;
+            }
+            .card-header {
+                margin-bottom: 16px;
+            }
+            .card-title {
+                font-size: 1.2rem;
+            }
+            .card-tabs {
+                margin-bottom: 16px;
+            }
+            .tab-btn {
+                font-size: 0.72rem;
+                padding: 6px 10px;
+            }
+            .tab-content {
+                min-height: 150px;
+            }
+            .desc-text {
+                font-size: 0.88rem;
+                line-height: 1.55;
+            }
+            .highlight-box {
+                padding: 10px;
+            }
+            .highlight-val {
+                font-size: 0.82rem;
+            }
+            .terminal-box {
+                padding: 8px 12px;
+            }
+            .terminal-code {
+                font-size: 0.72rem;
+            }
+            .btn-source {
+                padding: 12px;
+                font-size: 0.8rem;
+                border-radius: 12px;
+                min-height: 46px;
+                margin-top: 15px;
+            }
+            .cookie-banner {
+                padding: 20px 16px;
+                bottom: 15px;
+                width: 95%;
+            }
+            .cookie-header {
+                font-size: 0.95rem;
+            }
+            .cookie-text {
+                font-size: 0.8rem;
+            }
+            .cookie-btn {
+                padding: 8px 14px;
+                font-size: 0.78rem;
+                min-height: 38px;
+            }
+            .modal-box {
+                width: 95%;
+                max-height: 90vh;
+                border-radius: 16px;
+            }
+            .modal-header {
+                padding: 16px;
+            }
+            .modal-title {
+                font-size: 1rem;
+            }
+            .modal-tab-btn {
+                padding: 12px 10px;
+                font-size: 0.72rem;
+            }
+            .modal-body {
+                padding: 16px;
+                gap: 15px;
+            }
+            .lgpd-title {
+                font-size: 0.88rem;
+            }
+            .lgpd-text {
+                font-size: 0.82rem;
+            }
+            .telemetry-table th, .telemetry-table td {
+                padding: 8px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Mobile Large & Tablet Adaptations */
+        @media (min-width: 480px) and (max-width: 1023px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+                gap: 25px;
+            }
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+                letter-spacing: 6px;
+            }
+            .metrics-grid {
+                gap: 15px;
+            }
+            .metric-card {
+                padding: 16px 20px;
+                min-width: 180px;
+            }
+            .summon-container {
+                padding: 25px;
+            }
+            .summon-panel {
+                gap: 30px;
+            }
+            .cookie-banner {
+                width: 85%;
+            }
+        }
+
+        /* Desktop Breakpoints */
+        @media (min-width: 1024px) {
+            .cyber-navbar {
+                border-bottom: 1px solid rgba(192, 38, 255, 0.1);
             }
         }
     </style>
@@ -900,6 +1682,9 @@
 <body>
 
     <div class="scanline-overlay" id="scanline"></div>
+
+    <!-- Canvas de Estrelas Dinâmicas -->
+    <canvas id="starfield"></canvas>
 
     <!-- 3D Retro Grid Background -->
     <div class="retro-grid-container">
@@ -909,7 +1694,7 @@
     <!-- TOP NAV BAR -->
     <nav class="cyber-navbar">
         <div class="nav-logo">
-            DAS <span>SEARCH</span>
+            LOWAS <span>UNIVERSE</span>
         </div>
         <div class="nav-actions">
             <button class="sys-button cyan-btn" id="privacyBtn">PRIVACIDADE & LGPD</button>
@@ -917,28 +1702,81 @@
         </div>
     </nav>
 
-    <!-- HEADER -->
-    <header>
-        <h2>Decreepy Agents Search (DAS)</h2>
-        <p class="subtitle">&gt;&gt; DIRETÓRIO CIBERNÉTICO: INDEX COMPLETO DE PROJETOS E AGENTES INTELIGENTES</p>
+    <!-- HERO / HEADER -->
+    <header class="hero-section">
+        <h1 class="hero-title">LOWAS</h1>
+        <p class="hero-subtitle">AI AGENTS UNIVERSE</p>
+        <p class="hero-description">O diretório definitivo e imersivo dos agentes inteligentes mais avançados nos ecossistemas CrewAI, AutoGen, Agno e LangGraph.</p>
+        
+        <!-- Métricas de Impacto -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <span class="metric-icon">🪐</span>
+                <div class="metric-value">86</div>
+                <div class="metric-label">Agentes Ativos</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-icon">🧬</span>
+                <div class="metric-value">5</div>
+                <div class="metric-label">Frameworks</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-icon">🎯</span>
+                <div class="metric-value">37</div>
+                <div class="metric-label">Setores Cobertos</div>
+            </div>
+        </div>
     </header>
+
+    <!-- STELLAR SUMMON (GACHA SYSTEM) -->
+    <section class="summon-section">
+        <div class="summon-container">
+            <div class="summon-header">
+                <h3>🪐 INVOCAÇÃO ESTELAR (STELLAR SUMMON)</h3>
+                <p>Consulte as estrelas e convoque um agente inteligente aleatório do universo IA!</p>
+            </div>
+            
+            <div class="summon-panel">
+                <div class="summon-orb-wrapper">
+                    <div class="summon-orb" id="summonOrb">
+                        <div class="orb-inner"></div>
+                        <span class="orb-core">🌌</span>
+                    </div>
+                </div>
+                
+                <div class="summon-controls">
+                    <button class="summon-btn" id="summonBtn">✨ INVOCAR AGENTE</button>
+                    
+                    <div class="pity-container">
+                        <div class="pity-label">
+                            <span>Pity Tracker (Garante Curado em 10)</span>
+                            <span id="pityCounter">0 / 10</span>
+                        </div>
+                        <div class="pity-bar-bg">
+                            <div class="pity-bar-fill" id="pityBarFill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- CONTROLS -->
     <div class="controls-container">
         <div class="search-bar-wrapper">
-            <span class="search-icon">🧬</span>
-            <input type="text" id="searchInput" class="search-bar" placeholder="[BUSCAR NO SISTEMA] Digite o nome do agente, setor, compliance ou palavra-chave...">
+            <span class="search-icon">🪐</span>
+            <input type="text" id="searchInput" class="search-bar" placeholder="[BUSCAR NO UNIVERSO IA] Nome, setor, compliance ou palavra-chave...">
         </div>
         
         <div class="filters-group">
-            <button class="filter-btn active" data-filter="all">TODOS OS AGENTES</button>
-            <button class="filter-btn" data-filter="crewai">CREWAI</button>
-            <button class="filter-btn" data-filter="autogen">AUTOGEN</button>
-            <button class="filter-btn" data-filter="agno">AGNO</button>
-            <button class="filter-btn" data-filter="langgraph">LANGGRAPH</button>
-            <button class="filter-btn" data-filter="geral">GERAIS</button>
+            <button class="filter-btn active" data-filter="all">TODOS OS AGENTES (86)</button>
+            <button class="filter-btn" data-filter="crewai">CREWAI (20)</button>
+            <button class="filter-btn" data-filter="autogen">AUTOGEN (19)</button>
+            <button class="filter-btn" data-filter="agno">AGNO (13)</button>
+            <button class="filter-btn" data-filter="langgraph">LANGGRAPH (12)</button>
+            <button class="filter-btn" data-filter="geral">GERAIS (22)</button>
             
-            <div class="stats-badge" id="statsBadge">CARREGANDO...</div>
+            <div class="stats-badge" id="statsBadge">SINTONIZANDO CONSTELAÇÕES...</div>
         </div>
     </div>
 
@@ -947,17 +1785,46 @@
         <!-- Cards Injetados Dinamicamente via JavaScript -->
     </main>
 
+    <!-- GACHA REVEAL MODAL OVERLAY -->
+    <div class="gacha-modal-overlay" id="gachaModal">
+        <div class="gacha-reveal-container">
+            <div class="gacha-card-wrapper" id="gachaCard">
+                <div class="gacha-reveal-header">
+                    <div class="gacha-summon-status">✨ INVOCADO COM SUCESSO!</div>
+                    <div class="gacha-agent-name" id="gachaAgentName">HIA (Health Insights Agent)</div>
+                    <div class="gacha-badges" id="gachaAgentBadges">
+                        <span class="badge-fw geral">Geral</span>
+                        <span class="badge-sector">Saúde</span>
+                    </div>
+                </div>
+                
+                <div class="gacha-body">
+                    <div class="gacha-info-item">
+                        <div class="gacha-info-label">⚡ Resumo Técnico</div>
+                        <div class="gacha-info-val" id="gachaAgentDesc">Descrição do agente...</div>
+                    </div>
+                    <div class="gacha-info-item">
+                        <div class="gacha-info-label">⚙️ Como Funciona / Mecânica</div>
+                        <div class="gacha-info-val" id="gachaAgentHow">Mecânica do agente...</div>
+                    </div>
+                </div>
+                
+                <button class="gacha-close-btn" id="gachaCloseBtn">RETORNAR AO ESPAÇO</button>
+            </div>
+        </div>
+    </div>
+
     <div class="no-results" id="noResults">
-        <p>&gt;&gt; ERROR 404: Nenhum agente inteligente localizado nos repositórios.</p>
+        <p>&gt;&gt; SYSTEM ERROR 404: Nenhum agente estelar localizado nestas coordenadas.</p>
     </div>
 
     <!-- INTERACTIVE COOKIE CONSENT BANNER -->
     <div class="cookie-banner" id="cookieBanner">
         <div class="cookie-header">
-            <span>🧬</span> COMPLIANCE DE PRIVACIDADE (LGPD)
+            <span>🪐</span> COMPLIANCE DE PRIVACIDADE (LGPD)
         </div>
         <div class="cookie-text">
-            Este site opera com total privacidade e transparência. Armazenamos apenas preferências funcionais e locais no seu navegador (tema e parâmetros de pesquisa) via <strong style="color: var(--accent-green);">localStorage</strong> para prover melhor usabilidade técnica. Não utilizamos cookies invasivos, telemetria oculta ou rastreadores de terceiros que capturem sua identidade.
+            Este portal de conhecimento opera com total privacidade e transparência. Armazenamos apenas preferências funcionais e locais no seu navegador (filtro scanline e parâmetros de busca) via <strong style="color: var(--accent-cyan);">localStorage</strong> para prover melhor usabilidade técnica. Não utilizamos cookies invasivos, telemetria oculta ou rastreadores de terceiros que capturem sua identidade.
         </div>
         <div class="cookie-actions">
             <button class="cookie-btn sec-btn" id="cookieSettingsBtn">CONFIGURAÇÕES</button>
@@ -984,12 +1851,12 @@
                 <div class="modal-tab-content active" id="declTab">
                     <div>
                         <div class="lgpd-title">1. Respeito às Leis de Proteção de Dados (Lei nº 13.709/2018)</div>
-                        <p class="lgpd-text">Nós declaramos total conformidade com os princípios estabelecidos pela Lei Geral de Proteção de Dados Pessoais do Brasil. Praticamos estritamente a minimização de dados: coletamos apenas o estritamente necessário para que você navegue e busque os agentes inteligentes.</p>
+                        <p class="lgpd-text">Nós declaramos total conformidade com os princípios estabelecido pela Lei Geral de Proteção de Dados Pessoais do Brasil. Praticamos estritamente a minimização de dados: coletamos apenas o estritamente necessário para que você navegue e busque os agentes inteligentes.</p>
                     </div>
                     <div>
                         <div class="lgpd-title">2. Agentes de Tratamento & Contato</div>
                         <p class="lgpd-text">
-                            <strong>Controlador & Operador:</strong> Decreepy Agents Search (DAS) Team.<br>
+                            <strong>Controlador & Operador:</strong> LOWAS Search (DAS) Team.<br>
                             <strong>Encarregado de Dados (DPO) / Suporte de Privacidade:</strong> <a href="mailto:privacidade@das-search.com.br" style="color: var(--accent-cyan); text-decoration: none;">privacidade@das-search.com.br</a><br>
                             Para qualquer questionamento, exclusão de eventuais registros de acesso ou dúvidas sobre a lei, nosso canal do DPO está totalmente aberto e ativo.
                         </p>
@@ -1060,6 +1927,19 @@
         const scanlineToggle = document.getElementById('scanlineToggle');
         const scanlineOverlay = document.getElementById('scanline');
 
+        // Seletores do Gacha (Stellar Summon)
+        const summonOrb = document.getElementById('summonOrb');
+        const summonBtn = document.getElementById('summonBtn');
+        const pityCounter = document.getElementById('pityCounter');
+        const pityBarFill = document.getElementById('pityBarFill');
+        const gachaModal = document.getElementById('gachaModal');
+        const gachaCard = document.getElementById('gachaCard');
+        const gachaAgentName = document.getElementById('gachaAgentName');
+        const gachaAgentBadges = document.getElementById('gachaAgentBadges');
+        const gachaAgentDesc = document.getElementById('gachaAgentDesc');
+        const gachaAgentHow = document.getElementById('gachaAgentHow');
+        const gachaCloseBtn = document.getElementById('gachaCloseBtn');
+
         // Seletores de LGPD
         const cookieBanner = document.getElementById('cookieBanner');
         const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
@@ -1073,8 +1953,19 @@
         let currentFilter = 'all';
         let searchQuery = '';
 
+        // Inicialização do Pity do Gacha
+        let pity = parseInt(localStorage.getItem('lowas_gacha_pity') || '0', 10);
+        if (isNaN(pity) || pity < 0 || pity > 10) pity = 0;
+        
+        function updatePityUI() {
+            pityCounter.textContent = pity + ' / 10';
+            pityBarFill.style.width = (pity * 10) + '%';
+            localStorage.setItem('lowas_gacha_pity', pity.toString());
+        }
+        updatePityUI();
+
         // Restaura a busca do localStorage (se existir)
-        const savedQuery = localStorage.getItem('das_search_query');
+        const savedQuery = localStorage.getItem('lowas_search_query');
         if (savedQuery) {
             searchQuery = savedQuery;
             searchInput.value = savedQuery;
@@ -1082,7 +1973,7 @@
 
         // Controle do Scanline CRT
         let scanlineOn = true;
-        const savedScanline = localStorage.getItem('das_scanline');
+        const savedScanline = localStorage.getItem('lowas_scanline');
         if (savedScanline === 'off') {
             scanlineOn = false;
             scanlineOverlay.classList.add('disabled');
@@ -1095,19 +1986,19 @@
             if (scanlineOn) {
                 scanlineOverlay.classList.remove('disabled');
                 scanlineToggle.textContent = 'SCANLINE: ON';
-                scanlineToggle.style.boxShadow = '0 0 15px rgba(57, 255, 20, 0.4)';
-                localStorage.setItem('das_scanline', 'on');
+                scanlineToggle.style.boxShadow = '0 0 15px rgba(192, 38, 255, 0.4)';
+                localStorage.setItem('lowas_scanline', 'on');
             } else {
                 scanlineOverlay.classList.add('disabled');
                 scanlineToggle.textContent = 'SCANLINE: OFF';
                 scanlineToggle.style.boxShadow = 'none';
-                localStorage.setItem('das_scanline', 'off');
+                localStorage.setItem('lowas_scanline', 'off');
             }
             updateTelemetryTable(); // Atualiza painel de dados da LGPD
         });
 
         // Controle do Banner de Consentimento de Cookies
-        const consentGranted = localStorage.getItem('das_lgpd_consent');
+        const consentGranted = localStorage.getItem('lowas_lgpd_consent');
         if (!consentGranted) {
             setTimeout(() => {
                 cookieBanner.classList.add('active');
@@ -1115,7 +2006,7 @@
         }
 
         cookieAcceptBtn.addEventListener('click', () => {
-            localStorage.setItem('das_lgpd_consent', 'true');
+            localStorage.setItem('lowas_lgpd_consent', 'true');
             cookieBanner.classList.remove('active');
             updateTelemetryTable();
         });
@@ -1156,18 +2047,17 @@
         function updateTelemetryTable() {
             telemetryBody.innerHTML = '';
             const storageItems = [
-                { key: 'das_scanline', desc: 'Preferencia de exibicao do filtro retro scanlines (CRT)', val: localStorage.getItem('das_scanline') || 'on' },
-                { key: 'das_lgpd_consent', desc: 'Sinal de consentimento e leitura do banner da LGPD', val: localStorage.getItem('das_lgpd_consent') || 'false' },
-                { key: 'das_search_query', desc: 'Último texto digitado no campo de busca para fins de usabilidade', val: localStorage.getItem('das_search_query') || '[Vazio]' }
+                { key: 'lowas_scanline', desc: 'Preferência de exibição do filtro retro scanlines (CRT)', val: localStorage.getItem('lowas_scanline') || 'on' },
+                { key: 'lowas_lgpd_consent', desc: 'Sinal de consentimento e leitura do banner da LGPD', val: localStorage.getItem('lowas_lgpd_consent') || 'false' },
+                { key: 'lowas_search_query', desc: 'Último texto digitado no campo de busca para fins de usabilidade', val: localStorage.getItem('lowas_search_query') || '[Vazio]' },
+                { key: 'lowas_gacha_pity', desc: 'Contador de Pity do sistema de Invocação Estelar (Gacha)', val: localStorage.getItem('lowas_gacha_pity') || '0' }
             ];
 
             storageItems.forEach(item => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="color: var(--accent-cyan); font-weight: bold;">${item.key}</td>
-                    <td>"${item.val}"</td>
-                    <td style="color: var(--text-secondary);">${item.desc}</td>
-                `;
+                tr.innerHTML = '<td style="color: var(--accent-cyan); font-weight: bold;">' + item.key + '</td>' +
+                               '<td>"' + item.val + '"</td>' +
+                               '<td style="color: var(--text-secondary);">' + item.desc + '</td>';
                 telemetryBody.appendChild(tr);
             });
         }
@@ -1217,7 +2107,7 @@
                 return fwMatch && textMatch;
             });
 
-            statsBadge.textContent = `[ONLINE // DISPLAYING: ${filtered.length} AGENTES]`;
+            statsBadge.textContent = '[ONLINE // UNIVERSO ATIVO: ' + filtered.length + ' AGENTES ESTELARES]';
 
             if (filtered.length === 0) {
                 noResults.style.display = 'block';
@@ -1228,8 +2118,9 @@
             filtered.forEach((a, cardIdx) => {
                 const card = document.createElement('div');
                 const fwClass = a.framework.toLowerCase().replace('/', '');
-                card.className = `card ${fwClass}`;
+                card.className = 'card ' + fwClass;
                 card.setAttribute('data-framework', fwClass);
+                card.style.animationDelay = (cardIdx * 0.03) + 's';
 
                 const setupCommand = getInstallCommand(a.framework);
 
@@ -1252,7 +2143,7 @@
                         <!-- ABA 1: VISÃO GERAL -->
                         <div class="tab-content active" id="overview-${cardIdx}">
                             <div class="section-desc">
-                                <span class="section-title">⚡ Resumo Técnico</span>
+                                <span class="section-title" style="color: var(--accent-magenta); font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">⚡ Resumo Técnico</span>
                                 <p class="desc-text">${a.description}</p>
                             </div>
                             <div class="highlight-box">
@@ -1267,7 +2158,7 @@
                         <!-- ABA 2: COMO FUNCIONA -->
                         <div class="tab-content" id="how-${cardIdx}">
                             <div class="section-desc">
-                                <span class="section-title">⚙️ Processo & Funcionamento</span>
+                                <span class="section-title" style="color: var(--accent-magenta); font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">⚙️ Processo & Funcionamento</span>
                                 <p class="desc-text">${a.howItWorks}</p>
                             </div>
                         </div>
@@ -1275,10 +2166,10 @@
                         <!-- ABA 3: POR QUE É ÚTIL / QUANDO USAR -->
                         <div class="tab-content" id="use-${cardIdx}">
                             <div class="section-desc">
-                                <span class="section-title uc-title">💎 Valor de Negócios</span>
+                                <span class="section-title uc-title" style="color: var(--accent-magenta); font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">💎 Valor de Negócios</span>
                                 <p class="desc-text">${a.whyUseful}</p>
                             </div>
-                            <div class="highlight-box" style="background: rgba(0, 255, 204, 0.02); border-color: rgba(0, 255, 204, 0.1);">
+                            <div class="highlight-box" style="background: rgba(0, 240, 255, 0.02); border-color: rgba(0, 240, 255, 0.15);">
                                 <div class="highlight-label" style="color: var(--accent-cyan);">🎯 Melhor Cenário de Uso</div>
                                 <p class="highlight-val">${a.whenToUse}</p>
                             </div>
@@ -1307,14 +2198,14 @@
             tabContents.forEach(c => c.classList.remove('active'));
 
             btn.classList.add('active');
-            cardElement.querySelector(`#${tabId}`).classList.add('active');
+            cardElement.querySelector('#' + tabId).classList.add('active');
         };
 
         // Copia comandos do terminal simulado
         window.copyToClipboard = function(id) {
             const codeText = document.getElementById(id).textContent;
             navigator.clipboard.writeText(codeText).then(() => {
-                alert('Comando de instalação copiado!');
+                alert('Comando de instalação copiado para a área de transferência!');
             });
         };
 
@@ -1334,10 +2225,236 @@
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 searchQuery = e.target.value;
-                localStorage.setItem('das_search_query', searchQuery); // Salva busca (usabilidade + LGPD)
+                localStorage.setItem('lowas_search_query', searchQuery); // Salva busca (usabilidade + LGPD)
                 renderCards();
             }, 100);
         });
+
+        // --- STELLAR SUMMON GACHA SYSTEM LOGIC ---
+        // Áudio Cósmico via Web Audio API (Som Synth)
+        function playCosmicSound(isPitySucceeded) {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const audioCtx = new AudioContext();
+                
+                // Primeiro oscilador (Frequência Fundamental)
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                // Segundo oscilador (Harmônico Espacial)
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+                
+                osc.connect(gain);
+                osc2.connect(gain2);
+                gain.connect(audioCtx.destination);
+                gain2.connect(audioCtx.destination);
+                
+                if (isPitySucceeded) {
+                    // Som de Invocação Lendária (Brilho e tom crescente majestoso)
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 1.2);
+                    
+                    osc2.type = 'sine';
+                    osc2.frequency.setValueAtTime(300, audioCtx.currentTime);
+                    osc2.frequency.exponentialRampToValueAtTime(1760, audioCtx.currentTime + 1.2);
+                    
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 1.2);
+                    gain2.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain2.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 1.2);
+                    
+                    osc.start();
+                    osc2.start();
+                    osc.stop(audioCtx.currentTime + 1.2);
+                    osc2.stop(audioCtx.currentTime + 1.2);
+                } else {
+                    // Som de Invocação Padrão (Suave, vento cósmico synth)
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.8);
+                    
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+                    
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.8);
+                }
+            } catch (e) {
+                console.log('Web Audio API não iniciada devido a políticas do navegador.');
+            }
+        }
+
+        // Invocação Estelar
+        function performSummon() {
+            if (summonOrb.classList.contains('animating')) return;
+            
+            // Ativa animação
+            summonOrb.classList.add('animating');
+            summonBtn.textContent = '🪐 INVOCANDO...';
+            
+            // Incrementa Pity
+            pity++;
+            let rolledAgent = null;
+            let isEpicSummon = false;
+            
+            // Lógica do Gacha: a cada 10 invocações, garante um curado!
+            if (pity >= 10) {
+                isEpicSummon = true;
+                pity = 0; // Reseta pity
+                // Filtra os agentes que foram curados manualmente (aqueles com howItWorks exclusivo)
+                const curatedNames = [
+                    'HIA (Health Insights Agent)', 'AI Health Assistant', 'Automated Trading Bot', 
+                    'Virtual AI Tutor (EduGPT)', '24/7 AI Chatbot Support', 'Product Recommendation Agent',
+                    'Self-Driving Delivery Agent', 'Factory Process Monitoring Agent', 'Property Pricing Agent',
+                    'Smart Farming Assistant', 'Energy Demand Forecasting Agent', 'Content Personalization Agent',
+                    'Legal Document Review Assistant', 'Recruitment Recommendation Agent', 'Virtual Travel Assistant',
+                    'AI Game Companion Agent', 'Real-Time Threat Detection Agent', 'E-commerce Personal Shopper Agent',
+                    'Logistics Optimization Agent', 'Vibe Hacking (Decepticon)', 'MediSuite-Ai-Agent',
+                    'Email Auto Responder Flow', 'Meeting Assistant Flow', 'Self Evaluation Loop Flow',
+                    'Lead Score Flow', 'Marketing Strategy Generator', 'Job Posting Generator',
+                    'Recruitment Workflow', 'Match Profile to Positions', 'Instagram Post Generator',
+                    'Landing Page Generator', 'Task Solving with Code Gen', 'QA with Retrieval Chat / Qdrant',
+                    'Group Chat Solver', 'Data Visualization by Group Chat', 'Society of Mind (Inner-Monologue)',
+                    'Nested Chats (Conversas Aninhadas)', 'Web Surfer Agent', 'SQL Spider DB Agent',
+                    'Agno Support Agent / Assist', 'YouTube Analytica Agent', 'Finance / Thinking Finance Agent',
+                    'Journalistic Research Agent', 'Legal Consultant Agent', 'DeepKnowledge Agent',
+                    'Chatbot Simulation Evaluation', 'Information Gathering via Prompting', 'Code Assistant with Auto-Correction',
+                    'Enterprise Customer Support Agent', 'Adaptive RAG Flow', 'Corrective RAG (CRAG)', 'Self-RAG'
+                ];
+                const curatedPool = agents.filter(a => curatedNames.includes(a.name));
+                rolledAgent = curatedPool[Math.floor(Math.random() * curatedPool.length)];
+            } else {
+                // Sorteia um agente qualquer do banco de dados completo (86 agentes)
+                rolledAgent = agents[Math.floor(Math.random() * agents.length)];
+                // Verifica se calhou de ser um curado para tocar o som épico
+                const curatedNames = [
+                    'HIA (Health Insights Agent)', 'AI Health Assistant', 'Automated Trading Bot', 
+                    'Virtual AI Tutor (EduGPT)', '24/7 AI Chatbot Support', 'Product Recommendation Agent',
+                    'Self-Driving Delivery Agent', 'Factory Process Monitoring Agent', 'Property Pricing Agent',
+                    'Smart Farming Assistant', 'Energy Demand Forecasting Agent', 'Content Personalization Agent',
+                    'Legal Document Review Assistant', 'Recruitment Recommendation Agent', 'Virtual Travel Assistant',
+                    'AI Game Companion Agent', 'Real-Time Threat Detection Agent', 'E-commerce Personal Shopper Agent',
+                    'Logistics Optimization Agent', 'Vibe Hacking (Decepticon)', 'MediSuite-Ai-Agent',
+                    'Email Auto Responder Flow', 'Meeting Assistant Flow', 'Self Evaluation Loop Flow',
+                    'Lead Score Flow', 'Marketing Strategy Generator', 'Job Posting Generator',
+                    'Recruitment Workflow', 'Match Profile to Positions', 'Instagram Post Generator',
+                    'Landing Page Generator', 'Task Solving with Code Gen', 'QA with Retrieval Chat / Qdrant',
+                    'Group Chat Solver', 'Data Visualization by Group Chat', 'Society of Mind (Inner-Monologue)',
+                    'Nested Chats (Conversas Aninhadas)', 'Web Surfer Agent', 'SQL Spider DB Agent',
+                    'Agno Support Agent / Assist', 'YouTube Analytica Agent', 'Finance / Thinking Finance Agent',
+                    'Journalistic Research Agent', 'Legal Consultant Agent', 'DeepKnowledge Agent',
+                    'Chatbot Simulation Evaluation', 'Information Gathering via Prompting', 'Code Assistant with Auto-Correction',
+                    'Enterprise Customer Support Agent', 'Adaptive RAG Flow', 'Corrective RAG (CRAG)', 'Self-RAG'
+                ];
+                if (curatedNames.includes(rolledAgent.name)) {
+                    isEpicSummon = true;
+                }
+            }
+            
+            setTimeout(() => {
+                // Toca áudio
+                playCosmicSound(isEpicSummon);
+                
+                // Atualiza modal
+                gachaAgentName.textContent = rolledAgent.name;
+                
+                const fwClass = rolledAgent.framework.toLowerCase().replace('/', '');
+                gachaAgentBadges.innerHTML = '<span class="badge-fw ' + fwClass + '">' + rolledAgent.framework + '</span>' +
+                                             '<span class="badge-sector">' + rolledAgent.setor + '</span>';
+                
+                gachaAgentDesc.textContent = rolledAgent.description;
+                gachaAgentHow.textContent = rolledAgent.howItWorks || 'Lógica de execução modular em barramentos de IA.';
+                
+                // Estilo customizado do card revelado conforme raridade/framework
+                if (isEpicSummon) {
+                    gachaCard.style.borderColor = 'var(--accent-gold)';
+                    gachaCard.style.boxShadow = '0 25px 60px rgba(255, 215, 0, 0.4), 0 0 50px rgba(255, 215, 0, 0.2)';
+                } else {
+                    gachaCard.style.borderColor = 'var(--accent-violet)';
+                    gachaCard.style.boxShadow = '0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(192, 38, 255, 0.4)';
+                }
+                
+                // Exibe modal
+                gachaModal.classList.add('active');
+                
+                // Reseta estado da animação do orb
+                summonOrb.classList.remove('animating');
+                summonBtn.textContent = '✨ INVOCAR AGENTE';
+                updatePityUI();
+            }, 1000);
+        }
+
+        summonOrb.addEventListener('click', performSummon);
+        summonBtn.addEventListener('click', performSummon);
+        gachaCloseBtn.addEventListener('click', () => {
+            gachaModal.classList.remove('active');
+        });
+        gachaModal.addEventListener('click', (e) => {
+            if (e.target === gachaModal) gachaModal.classList.remove('active');
+        });
+
+        // --- DYNAMIC COSMIC STARFIELD SIMULATION ---
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        const maxStars = 80;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.3;
+                this.alpha = Math.random();
+                this.speed = Math.random() * 0.015 + 0.005;
+                // Cores cósmicas: tons de violeta, cyan ou dourado estelar
+                const r = Math.random();
+                this.color = r > 0.6 ? '#C026FF' : (r > 0.2 ? '#00F0FF' : '#FFD700');
+            }
+            update() {
+                this.alpha += this.speed;
+                if (this.alpha > 1 || this.alpha < 0) {
+                    this.speed = -this.speed;
+                }
+                if (this.alpha < 0) this.reset();
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = Math.max(0.08, this.alpha);
+                ctx.shadowBlur = this.size * 2;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        for (let i = 0; i < maxStars; i++) {
+            stars.push(new Star());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
 
         // Inicialização
         renderCards();
