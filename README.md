@@ -4,7 +4,7 @@
 
 [![Deploy status](https://img.shields.io/badge/Deploy-Production--Ready-8B00FF?style=for-the-badge&logo=vercel&logoColor=white)](https://lowas-agents.vercel.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-C026FF?style=for-the-badge)](https://github.com/FFloriani/decreepy-agents-search/blob/main/LICENSE)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/FFloriani)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/1b9hbqniv1)
 
 ### 🪐 An ultra-premium, highly immersive directory of AI Agents across CrewAI, AutoGen, Agno, and LangGraph ecosystems.
 
@@ -107,7 +107,7 @@ If you love this project, consider buying me a coffee! Your support helps fuel f
 
 <div align="center">
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/FFloriani)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/1b9hbqniv1)
 
 **Felipe Floriani**  
 *Creator & UX Lead Developer*
