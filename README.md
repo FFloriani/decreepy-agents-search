@@ -1,14 +1,14 @@
-# 🧬 LOWAS — AI Agents Universe
+# 🧬 LOWAS — AI Agents Directory
 
 <div align="center">
 
-[![Deploy status](https://img.shields.io/badge/Deploy-Production--Ready-8B00FF?style=for-the-badge&logo=vercel&logoColor=white)](https://lowas-agents.vercel.app)
-[![License: MIT](https://img.shields.io/badge/License-MIT-C026FF?style=for-the-badge)](https://github.com/FFloriani/decreepy-agents-search/blob/main/LICENSE)
+[![Deploy status](https://img.shields.io/badge/Deploy-Production--Ready-8B00FF?style=for-the-badge&logo=vercel&logoColor=white)](https://lowas-floriani.vercel.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-C026FF?style=for-the-badge)](https://github.com/FFloriani/lowas/blob/master/LICENSE)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/1b9hbqniv1)
 
-### 🪐 An ultra-premium, highly immersive directory of AI Agents across CrewAI, AutoGen, Agno, and LangGraph ecosystems.
+### 🪐 An ultra-premium, fast, and responsive directory of AI Agents across CrewAI, AutoGen, Agno, and LangGraph.
 
-[**Explore the Live Universe**](https://lowas-agents.vercel.app)
+[**Access the Live Directory**](https://lowas-floriani.vercel.app)
 
 </div>
 
@@ -16,84 +16,75 @@
 
 ## 📸 Overview
 
-**LOWAS — AI Agents Universe** is a state-of-the-art, single-page application directory curating over **86 advanced AI Agents** across popular frameworks. Built upon the premium **"Espelho do Universo" (Mirror of the Universe)** design system, the platform features deep dark cosmic aesthetics, real-time statistics, modular tabs, high-fidelity responsive layouts, and gamified engagement mechanics.
+**LOWAS** is a high-performance single-page catalog curating advanced AI Agents across the most popular development frameworks (CrewAI, AutoGen, Agno, and LangGraph). Designed with a premium deep-dark aesthetic, it provides users with instantaneous filtering, detailed agent breakdowns, practical application use cases, and deployment-ready templates.
 
 ---
 
-## 🎨 Visual Identity: "Espelho do Universo"
+## 🎨 Key Features
 
-The user interface delivers a premium, immersive digital experience leveraging state-of-the-art frontend styling:
-- **Cosmic Dark Mode:** Deep, void-like black background (`#050507`) blended with soft HSL glowing radial gradients simulating distant nebulas.
-- **Dynamic Starfield:** An interactive, hardware-accelerated HTML5 Canvas particle system rendering shimmering multi-colored stars (cyan, violet, and gold).
-- **Responsive Layout:** Engineered starting from a strict 9:16 portrait viewport base, scaling seamlessly into elegant ultrawide grid columns.
-- **Horizontal Swipeable Filters:**sleek touch-friendly pill buttons with web-safe dynamic horizontal scrolling to prevent wrapping and preserve layout cleanliness on mobile devices.
-- **Staggered Entry Transitions:** Progressive CSS `@keyframes fadeInUp` loading animations, assigning staggered delays to card items for a beautiful, organic layout reveal.
+- **Instant Search & Filtering:** Filter agents by framework or sector in milliseconds without page reloads.
+- **Interactive Framework Metrics:** Dynamic counters showing the distribution of agents across active frameworks in real time.
+- **Premium Interface Design:** A sleek, responsive layout built for all viewports (from mobile screens to ultrawide displays) featuring smooth transitions, clean typography, and a modern dark theme.
+- **Staggered Animations:** Card list items reveal themselves with an organic, smooth loading delay for enhanced UX feedback.
+- **Local Storage Telemetry:** Privacy-first architecture storing only essential search preferences locally on your browser.
 
+---
 
+## 🛡️ Privacy & LGPD Compliance
 
-## 🛡️ Robust LGPD Privacy Compliance (Art. 18 Compliant)
-
-LOWAS is committed to strict data minimization principles under the Brazilian General Data Protection Law (LGPD, Law nº 13.709/2018):
-1. **Cookie Consent Banner:** A gorgeous glassmorphic bottom banner detailing active storage policies. Smoothly fades in and completely disables click-blocking pointer events when closed.
-2. **Autodeterminação Informativa Dashboard:** A live, interactive dashboard displaying exactly what variables are stored locally (e.g., scanline preference, search queries, pity count).
-3. **Data Scrubber:** A single-click complete purge function (`localStorage.clear()`) to execute the right to erasure under Art. 18.
-4. **Active DPO Channel:** Direct contact endpoint for user privacy enquiries.
+LOWAS values privacy and fully complies with the data minimization principles under the Brazilian General Data Protection Law (LGPD, Law nº 13.709/2018):
+1. **Interactive Storage Dashboard:** Transparently check exactly what data is stored in your browser's local storage (e.g., search queries, framework filter, or theme choices).
+2. **Right to Erasure (Art. 18):** A single-click database purge option allows users to instantly wipe all local data stored by the app.
+3. **Glassmorphic Consent Banner:** A non-intrusive, clean disclaimer describing active cookie and storage policies.
 
 ---
 
 ## ⚙️ Architecture & Build Pipeline
 
-The repository uses a highly decoupled, lightweight compiler architecture to build the distribution site static code:
+The project relies on a lightweight Node.js compiler to keep the static client runtime fast and optimized:
 
 ```
 LOWAS/
-├── 📁 site/                      <-- Isolated production static directory
-│   └── 📄 index.html             <-- Generated single-file ultra-fast SPA (86 agents)
+├── 📁 site/                      <-- Serves the static production website
+│   └── 📄 index.html             <-- The compiled, fast single-page app (SPA)
 │
-├── 📄 lista_agents.csv           <-- Curated UTF-8 BOM CSV database (Excel safe)
+├── 📄 lista_agents.csv           <-- Raw UTF-8 CSV database of agents
 ├── ⚙️ gerar_html.js              <-- Node.js template compiler script
-├── ⚙️ gerar_sheets.js            <-- Script for initial spreadsheet extraction
+├── ⚙️ gerar_sheets.js            <-- Script for initial spreadsheet sync
 └── 📄 README.md                  <-- Project documentation
 ```
 
-### The Compiler Pipeline (`gerar_html.js`):
-1. **CSV Parsing:** Parses `lista_agents.csv` using a custom RFC-4180 parser, keeping track of UTF-8 BOM markers.
-2. **Data Merging:** Cross-references rows with an inline dictionary of 39 manual curated agents (`curatedData`) containing highly rich mechanical breakdowns and installation scripts.
-3. **Template Compilation:** Evaluates counts, sets staggered animation parameters, processes responsive CSS blocks, and exports the optimized single-file `site/index.html`.
+### The Build Process (`gerar_html.js`):
+1. Reads and parses `lista_agents.csv` securely.
+2. Cross-references rows with an inline curated dictionary containing complex setups, code installation scripts, and practical descriptions.
+3. Generates and outputs a highly optimized `site/index.html` file ready to be served.
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-- **Client Runtime:** Vanilla HTML5, CSS3 Variables, ES6 JavaScript.
-- **Audio & Animations:** HTML5 Web Audio API, Canvas 2D API, Hardware-Accelerated CSS Transitions.
-- **Build Utilities:** Node.js (Core `fs` and `path` modules).
-- **Deployment:** Vercel continuous git-integration.
+- **Client:** HTML5, CSS3 Custom Properties, ES6+ Javascript.
+- **Build System:** Node.js (Core `fs` and `path` modules).
+- **Deployment:** Vercel continuous deployment.
 
 ---
 
-## 🚀 Quick Start (Local Run)
+## 🚀 Local Setup
 
-No external packages or package.json dependencies are required to run the compiler:
+To compile the project or run it locally, no external npm packages are required:
 
-1. **Recompile the Site:**
+1. **Recompile the Catalog:**
    ```bash
    node gerar_html.js
    ```
-2. **View Locally:**
-   Simply double-click `site/index.html` or run any local live server extension to explore.
+2. **Open the Site:**
+   Open `site/index.html` in any web browser or use a live server extension.
 
 ---
 
-## 📄 License
+## ☕ Support the Project
 
-This software is developed by **LOWAS Team** and is released under the **MIT License**. Feel free to use, modify, and distribute for commercial or academic applications.
-
----
-
-## ☕ Support
-
-If you love this project, consider buying me a coffee! Your support helps fuel further cosmic developments.
+If you find this project useful, consider buying me a coffee to support further updates and improvements!
 
 <div align="center">
 
@@ -103,3 +94,4 @@ If you love this project, consider buying me a coffee! Your support helps fuel f
 *Creator & UX Lead Developer*
 
 </div>
+
